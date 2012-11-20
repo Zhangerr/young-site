@@ -37,7 +37,7 @@
 <li>Astronomy Corner</li>
 </ul></div>
 <div class="span3"><h5><i class="icon-user icon-white"></i> Contact</h5>
-<strong class="contact-title">EMAIL</strong><hr class="contact-hr" /><i class="icon-envelope icon-white"></i> <a href='mailto:GYYOUNG@capousd.org'>gyyong@capousd.org</a> <br /><br />
+<strong class="contact-title">EMAIL</strong><hr class="contact-hr" /><i class="icon-envelope icon-white"></i> <a href='mailto:GYYOUNG@capousd.org'>gyyoung@capousd.org</a> <br /><br />
 <strong class="contact-title">Work Phone</strong><hr class="contact-hr" /><i class="icon-phone icon-white"></i> (949)-492-4165  ext. 2504 <br /> <br />
 <strong class="contact-title" >Best time to call</strong> <hr class="contact-hr" /><i class="icon-calendar icon-white"></i> M,T,W and F before 9 A.M.
 </div>
@@ -47,70 +47,9 @@
 &copy; <a href="http://code.google.com/p/schs-site">SCHS Web Design Club</a> 2012 | Built with <a href="http://twitter.github.com/bootstrap/">Bootstrap</a> and <a href="http://wordpress.org">Wordpress</a> | <a href="#">Top</a><br /><br /></div></div></div>
 
 <div id="copyright">
-<?php //echo sprintf( __( '%1$s %2$s %3$s. All Rights Reserved.', 'blankslate' ), '&copy;', date('Y'), esc_html(get_bloginfo('name')) ); echo sprintf( __( ' Theme By: %1$s', 'blankslate' ), '<a href="http://tidythemes.com/">TidyThemes</a>' ); ?>
 </div>
 </footer>
 
-<?php wp_footer(); ?>
-	<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
-    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-//move to external js later
-		   $(document).ready(function() {  
-/*	var url = "http://apod.nasa.gov/apod/astropix.html"; http://edspencer.net/tag/apod read this
-	var html = "";
-	$.getJSON("http://query.yahooapis.com/v1/public/yql?"+
-"q=select%20*%20from%20html%20where%20url%3D%22"+
-encodeURIComponent(url)+
-"%22&format=xml'&callback=?",function(data) {html = data.results[0];var parser = new DOMParser();
-var doc = parser.parseFromString(html, "text/xml");
-var link = "http://apod.nasa.gov/apod/" + doc.firstChild.firstElementChild.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.nextElementSibling.getAttribute("href");
-$(".cosmos").html('<img class="img-polaroid" style="max-width:25%" src="' + link + '"/>');}); */
-
-
-     var $win = $(window)
-      , $nav = $('.navbar')
-	  , navHeight = $('.navbar').first().height()
-      , navTop = $('.navbar').length && $('.navbar').offset().top - navHeight
-      , isFixed = 0
-
-    processScroll()
-
-    $win.on('scroll', processScroll)
-
-    function processScroll() {
-      var i, scrollTop = $win.scrollTop()
-      if (scrollTop >= navTop && !isFixed) {
-        isFixed = 1
-        $nav.addClass('navbar-fixed-top')
-      } else if (scrollTop <= navTop && isFixed) {
-        isFixed = 0
-        $nav.removeClass('navbar-fixed-top')
-      }
-    }
-if($('.astronomy').length > 0) {
-var counter = 0;
-$.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://www.acme.com/jef/apod/rss.xml&num=6&callback=?', function(data) {
-for(var i = 0; i < 6; i++) { //in the future perhaps make background draggable because there's already that ease function
-
-var src = data.responseData.feed.entries[i].content.match(/img src=\"([a-zA-Z0-9\_\.\/\:]*)\"/)[1];
-if(src !== "") {
-	counter +=1;
-	//$('.astro'+counter).html("<img style='box-shadow:0px 0px 5px #000;' src=\"" + src+"\" /> <hr style='margin-bottom:0px' /><b style='font-size: 11px;'>" + data.responseData.feed.entries[i].title + "</b>");
-	$('.astro'+counter).html('<div style="padding:5px;background-color:black;color:whitesmoke;opacity:.8;"><h4 style="padding:0px;margin:0px;"><a class="caption-astro" href="' + data.responseData.feed.entries[i].link + '">' +  data.responseData.feed.entries[i].title + '</a></h4></div>');
-	$('.astro'+counter).css({"background-image":"url('http://src.sencha.io/" + $(".astro"+counter).width() + "/"+src + "')","height":"250px","background-position":"center"});
-	
-	//console.log(src + counter);
-	if(counter == 3) { 
-	break;
-	}
-}
-}
-})
-}
-		});
-		
-
-</script>
+<?php wp_footer(); ?>	
 </body>
 </html>
