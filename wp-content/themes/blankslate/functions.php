@@ -1,4 +1,17 @@
 <?php
+function wpbootstrap_scripts_with_jquery() { 
+// Register the script like this for a theme:
+ wp_register_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ) ); 
+ wp_register_script( 'custom', get_template_directory_uri() . '/js/custom.js', array( 'bootstrap' ) ); 
+ // For either a plugin or a theme, you can then enqueue the script:
+ wp_enqueue_script( 'custom' ); 
+ wp_enqueue_script( 'bootstrap' ); 
+ } 
+ 
+ add_action( 'wp_enqueue_scripts', 'wpbootstrap_scripts_with_jquery' );
+
+
+
 add_action('after_setup_theme', 'blankslate_setup');
 //load extra-editor-styles.css in tinymce
 add_editor_style('css/bootstrap.min.css');

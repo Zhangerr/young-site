@@ -37,7 +37,7 @@
 <li>Astronomy Corner</li>
 </ul></div>
 <div class="span3"><h5><i class="icon-user icon-white"></i> Contact</h5>
-<strong class="contact-title">EMAIL</strong><hr class="contact-hr" /><i class="icon-envelope icon-white"></i> <a href='mailto:GYYOUNG@capousd.org'>gyyoung@capousd.org</a> <br /><br />
+<strong class="contact-title">EMAIL</strong><hr class="contact-hr" /><i class="icon-envelope icon-white"></i> <a href='mailto:GYYOUNG@capousd.org'>gyyong@capousd.org</a> <br /><br />
 <strong class="contact-title">Work Phone</strong><hr class="contact-hr" /><i class="icon-phone icon-white"></i> (949)-492-4165  ext. 2504 <br /> <br />
 <strong class="contact-title" >Best time to call</strong> <hr class="contact-hr" /><i class="icon-calendar icon-white"></i> M,T,W and F before 9 A.M.
 </div>
@@ -56,18 +56,7 @@
     <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 //move to external js later
-String.prototype.format = function() {
-  var args = arguments;
-  return this.replace(/{(\d+)}/g, function(match, number) { 
-    return typeof args[number] != 'undefined'
-      ? args[number]
-      : match
-    ;
-  });
-};
-
 		   $(document).ready(function() {  
-		   
 /*	var url = "http://apod.nasa.gov/apod/astropix.html"; http://edspencer.net/tag/apod read this
 	var html = "";
 	$.getJSON("http://query.yahooapis.com/v1/public/yql?"+
@@ -101,76 +90,27 @@ $(".cosmos").html('<img class="img-polaroid" style="max-width:25%" src="' + link
     }
 if($('.astronomy').length > 0) {
 var counter = 0;
-var isNarrow = $(window).width() < 979 && $(window).width() >= 768;
-var max = isNarrow? 2 : 3;
 $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://www.acme.com/jef/apod/rss.xml&num=6&callback=?', function(data) {
 for(var i = 0; i < 6; i++) { //in the future perhaps make background draggable because there's already that ease function
 
 var src = data.responseData.feed.entries[i].content.match(/img src=\"([a-zA-Z0-9\_\.\/\:]*)\"/)[1];
 if(src !== "") {
 	counter +=1;
-	/*<div class="span4">
-<div class="thumbnail astro1"><img src="http://placehold.it/300x200" alt="" /></div>
-</div>
-<div class="span4">
-<div class="thumbnail astro2"><img src="http://placehold.it/300x200" alt="" /></div>
-</div>
-<div class="span4">
-<div class="thumbnail astro3"><img src="http://placehold.it/300x200" alt="" /></div>
-</div>*/
 	//$('.astro'+counter).html("<img style='box-shadow:0px 0px 5px #000;' src=\"" + src+"\" /> <hr style='margin-bottom:0px' /><b style='font-size: 11px;'>" + data.responseData.feed.entries[i].title + "</b>");
-	//http://src.sencha.io/" + $(".astro"+counter).width() + "/"
-	if(!isNarrow) {
-	$('.astronomy').append('<div class="span4 astro-wrapper"><div class="thumbnail astro" style="background-image:url(\'' +src + '\');height:250px;background-position:center;"><div style="padding:5px;background-color:black;color:whitesmoke;opacity:.8;"><h4 style="padding:0px;margin:0px;"><a class="caption-astro" href="' + data.responseData.feed.entries[i].link + '">' +  data.responseData.feed.entries[i].title + '</a></h4></div></div></div>');
-	} else {
-	$('.astronomy').append('<div class="span6 astro-wrapper"><div class="thumbnail astro" style="background-image:url(\'' +src + '\');height:250px;background-position:center;"><div style="padding:5px;background-color:black;color:whitesmoke;opacity:.8;"><h4 style="padding:0px;margin:0px;"><a class="caption-astro" href="' + data.responseData.feed.entries[i].link + '">' +  data.responseData.feed.entries[i].title + '</a></h4></div></div></div>');
-	
-	}
-	//$('.astro'+counter).css({"background-image":"url('" +src + "')","height":"250px","background-position":"center"});
+	$('.astro'+counter).html('<div style="padding:5px;background-color:black;color:whitesmoke;opacity:.8;"><h4 style="padding:0px;margin:0px;"><a class="caption-astro" href="' + data.responseData.feed.entries[i].link + '">' +  data.responseData.feed.entries[i].title + '</a></h4></div>');
+	$('.astro'+counter).css({"background-image":"url('http://src.sencha.io/" + $(".astro"+counter).width() + "/"+src + "')","height":"250px","background-position":"center"});
 	
 	//console.log(src + counter);
-	if(counter == max) { 
+	if(counter == 3) { 
 	break;
 	}
 }
 }
 })
 }
-//maybe switch this to media queries
-$(window).resize(function() {
-var isNarrow = $(window).width() < 979 && $(window).width() >= 768;
-if(isNarrow) {
-$('.astro-wrapper').each(function(i, e){
-switch(i) {
-case 0:
-case 1:
-if($(this).hasClass('span4'))
-	$(this).toggleClass('span4 span6');
-break;
-case 2:
-if($(this).is(":visible"))
-	$(this).hide();
-break;
-}
-});
-
-} else {
-$('.astro-wrapper').each(function(i, e){
-switch(i) {
-case 0:
-case 1:
-if($(this).hasClass('span6'))
-	$(this).toggleClass('span6 span4');
-break;
-case 2:
-if(!$(this).is(":visible"))
-	$(this).show();
-break;
-}
-});
-}
-});
 		});
+		
+
 </script>
 </body>
 </html>

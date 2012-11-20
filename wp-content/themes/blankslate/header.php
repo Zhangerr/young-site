@@ -16,12 +16,12 @@
 <div id="wrap">
 <div id="wrapper" class="hfeed"> 
 <header>
-<!--<div class="container-fluid">
+<div class="container-fluid">
 <div class="row-fluid">
 <div class="span10 offset1" id="footer-lists">
 <div class="row-fluid">
 
-</div></div></div></div>-->
+</div></div></div></div>
 <div id="branding">
 <!--<div id="site-title"><?php if ( is_singular() ) {} else {echo '<h1>';} ?><a href="<?php echo home_url() ?>/" title="<?php bloginfo( 'name' ) ?>" rel="home"><?php bloginfo( 'name' ) ?></a><?php if ( is_singular() ) {} else {echo '</h1>';} ?></div>-->
 <p id="site-description"><?php bloginfo( 'description' ) ?></p>
@@ -36,6 +36,8 @@
 <div id="container" class="container-fluid">
 <div class="row-fluid">
 <div class="span10 offset1">
+<br />
+<br />
                <div class="alert alert-info">
                   <h4><i style="margin-top:3px;" class="icon-bookmark"></i> Notice</h4>
                   Site redesign in progress...
