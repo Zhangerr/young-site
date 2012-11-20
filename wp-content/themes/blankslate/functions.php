@@ -32,6 +32,8 @@ function tcb_add_tinymce_buttons( $tinyrowthree ) {
 add_filter( 'mce_buttons_3', 'tcb_add_tinymce_buttons' );
 
 
+
+
 function blankslate_setup(){
 load_theme_textdomain('blankslate', get_template_directory() . '/languages');
 add_theme_support( 'automatic-feed-links' );
@@ -156,6 +158,139 @@ $avatar_email = get_comment_author_email();
 $avatar = str_replace( "class='avatar", "class='photo avatar", get_avatar( $avatar_email, 80 ) );
 echo $avatar . ' <span class="fn n">' . $commenter . '</span>';
 }
+function my_nav_list($content){
+return str_replace('<ul>','<ul class="nav nav-pills">', $content);
+}
+add_filter( 'wp_page_menu', 'my_nav_list' );
+function my_edit_link($content) {
+$content = str_replace('post-edit-link','post-edit-link btn btn-mini',$content);
+	return  str_replace("Edit Post\">","Edit Post\"><i class=\"icon-edit\"></i> ", $content);
+}
+add_filter('edit_post_link', 'my_edit_link');
+/**
+ * Adds Foo_Widget widget.
+ */
+class Categories_Widget extends WP_Widget {
+
+	/**
+	 * Register widget with WordPress.
+	 */
+	public function __construct() {
+		parent::__construct(
+	 		'categories_widget', // Base ID
+			'Categories v2', // Name
+			array( 'description' => __( 'A custom categories widget that utilizes bootstrap', 'text_domain' ), ) // Args
+		);
+	}
+
+	/**
+	 * Front-end display of widget.
+	 *
+	 * @see WP_Widget::widget()
+	 *
+	 * @param array $args     Widget arguments.
+	 * @param array $instance Saved values from database.
+	 */
+	function widget( $args, $instance ) {
+		extract( $args );
+
+		$title = apply_filters('widget_title', empty( $instance['title'] ) ? __( 'Categories' ) : $instance['title'], $instance, $this->id_base);
+		$c = ! empty( $instance['count'] ) ? '1' : '0';
+		$h = ! empty( $instance['hierarchical'] ) ? '1' : '0';
+		$d = ! empty( $instance['dropdown'] ) ? '1' : '0';
+
+		//echo $before_widget;
+		//if ( $title )
+	//		echo $before_title . $title . $after_title;
+
+		$cat_args = array('orderby' => 'name', 'show_count' => $c, 'hierarchical' => $h);
+
+		if ( $d ) {
+			$cat_args['show_option_none'] = __('Select Category');
+			wp_dropdown_categories(apply_filters('widget_categories_dropdown_args', $cat_args));
+?>
+
+<script type='text/javascript'>
+/* <![CDATA[ */
+	var dropdown = document.getElementById("cat");
+	function onCatChange() {
+		if ( dropdown.options[dropdown.selectedIndex].value > 0 ) {
+			location.href = "<?php echo home_url(); ?>/?cat="+dropdown.options[dropdown.selectedIndex].value;
+		}
+	}
+	dropdown.onchange = onCatChange;
+/* ]]> */
+</script>
+
+<?php
+		} else {
+?>
+		<ul class="nav nav-list well" style="margin-top:20px;">
+		<li class="nav-header">Categories</li>
+		<li class="divider"></li>
+<?php
+		$cat_args['title_li'] = '';
+		wp_list_categories(apply_filters('widget_categories_args', $cat_args));
+?>
+		</ul>
+<?php
+		}
+
+		echo $after_widget;
+	}
+
+	/**
+	 * Sanitize widget form values as they are saved.
+	 *
+	 * @see WP_Widget::update()
+	 *
+	 * @param array $new_instance Values just sent to be saved.
+	 * @param array $old_instance Previously saved values from database.
+	 *
+	 * @return array Updated safe values to be saved.
+	 */
+	function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
+		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['count'] = !empty($new_instance['count']) ? 1 : 0;
+		$instance['hierarchical'] = !empty($new_instance['hierarchical']) ? 1 : 0;
+		$instance['dropdown'] = !empty($new_instance['dropdown']) ? 1 : 0;
+
+		return $instance;
+	}
+
+	/**
+	 * Back-end widget form.
+	 *
+	 * @see WP_Widget::form()
+	 *
+	 * @param array $instance Previously saved values from database.
+	 */
+	function form( $instance ) {
+		//Defaults
+		$instance = wp_parse_args( (array) $instance, array( 'title' => '') );
+		$title = esc_attr( $instance['title'] );
+		$count = isset($instance['count']) ? (bool) $instance['count'] :false;
+		$hierarchical = isset( $instance['hierarchical'] ) ? (bool) $instance['hierarchical'] : false;
+		$dropdown = isset( $instance['dropdown'] ) ? (bool) $instance['dropdown'] : false;
+?>
+		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title:' ); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
+
+		<p><input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('dropdown'); ?>" name="<?php echo $this->get_field_name('dropdown'); ?>"<?php checked( $dropdown ); ?> />
+		<label for="<?php echo $this->get_field_id('dropdown'); ?>"><?php _e( 'Display as dropdown' ); ?></label><br />
+
+		<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('count'); ?>" name="<?php echo $this->get_field_name('count'); ?>"<?php checked( $count ); ?> />
+		<label for="<?php echo $this->get_field_id('count'); ?>"><?php _e( 'Show post counts' ); ?></label><br />
+
+		<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('hierarchical'); ?>" name="<?php echo $this->get_field_name('hierarchical'); ?>"<?php checked( $hierarchical ); ?> />
+		<label for="<?php echo $this->get_field_id('hierarchical'); ?>"><?php _e( 'Show hierarchy' ); ?></label></p>
+<?php
+	}
+
+} // class Foo_Widget
+// register Foo_Widget widget
+add_action( 'widgets_init', create_function( '', 'register_widget( "categories_widget" );' ) );
 function blankslate_custom_comments($comment, $args, $depth) {
 $GLOBALS['comment'] = $comment;
 $GLOBALS['comment_depth'] = $depth;

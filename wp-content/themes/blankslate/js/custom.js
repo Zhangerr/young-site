@@ -7,7 +7,7 @@ String.prototype.format = function() {
     ;
   });
 };
-
+$ = jQuery;
 ($(document).ready(function() {  
 		        var $win = $(window)
       , $nav = $('.navbar')

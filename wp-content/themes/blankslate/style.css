@@ -10,7 +10,8 @@ License: GNU General Public License | This theme is completely free and open sou
 License URI: https://www.gnu.org/licenses/gpl.html
 */
 
-@import url('css/bootstrap.css'); 
+@import url('css/bootstrap.min.css'); 
+@import url('css/font-awesome.css');
 @media (max-width: 767px) {
   body {
     padding-left: 0px;
