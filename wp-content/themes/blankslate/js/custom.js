@@ -8,7 +8,9 @@ String.prototype.format = function() {
   });
 };
 $ = jQuery;
-($(document).ready(function() {  
+($(document).ready(
+
+function() {  $("#tt").tooltip();
 		        var $win = $(window)
       , $nav = $('.navbar')
 	  , navHeight = $('.navbar').first().height()
@@ -33,21 +35,15 @@ if($('.astronomy').length > 0) {
 var counter = 0;
 var isNarrow = $(window).width() < 979 && $(window).width() >= 768;
 var max = isNarrow? 2 : 3;
+// get 6 in case some aren't images for some reason (one time it was a video)
+//in the future get more to make a slideshow
 $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://www.acme.com/jef/apod/rss.xml&num=6&callback=?', function(data) {
 for(var i = 0; i < 6; i++) { //in the future perhaps make background draggable because there's already that ease function
 
 var src = data.responseData.feed.entries[i].content.match(/img src=\"([a-zA-Z0-9\_\.\/\:]*)\"/)[1];
 if(src !== "") {
 	counter +=1;
-	if(!isNarrow) {
-	$('.astronomy').append('<div class="span4 astro-wrapper"><div class="thumbnail astro" style="background-image:url(\'' +src + '\');height:250px;background-position:center;"><div style="padding:5px;background-color:black;color:whitesmoke;opacity:.8;"><h4 style="padding:0px;margin:0px;"><a class="caption-astro" href="' + data.responseData.feed.entries[i].link + '">' +  data.responseData.feed.entries[i].title + '</a></h4></div></div></div>');
-	} else {
-	$('.astronomy').append('<div class="span6 astro-wrapper"><div class="thumbnail astro" style="background-image:url(\'' +src + '\');height:250px;background-position:center;"><div style="padding:5px;background-color:black;color:whitesmoke;opacity:.8;"><h4 style="padding:0px;margin:0px;"><a class="caption-astro" href="' + data.responseData.feed.entries[i].link + '">' +  data.responseData.feed.entries[i].title + '</a></h4></div></div></div>');
-	
-	}
-	//$('.astro'+counter).css({"background-image":"url('" +src + "')","height":"250px","background-position":"center"});
-	
-	//console.log(src + counter);
+	$('.astronomy').append('<div class="' + (isNarrow? 'span6':'span4') + ' astro-wrapper"><div class="thumbnail astro" style="background-image:url(\'' +src + '\');"><div><h4><a class="caption-astro" href="' + data.responseData.feed.entries[i].link + '">' +  data.responseData.feed.entries[i].title + '</a></h4></div></div></div>');
 	if(counter == max) { 
 	break;
 	}

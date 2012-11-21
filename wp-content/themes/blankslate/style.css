@@ -9,120 +9,143 @@ Tags: one-column, flexible-width, custom-menu, featured-images, microformats, st
 License: GNU General Public License | This theme is completely free and open source to use as you like for both personal and commercial projects without any limitations.
 License URI: https://www.gnu.org/licenses/gpl.html
 */
-@import url('css/bootstrap.min.css'); 
-@import url('css/font-awesome.css');
-@media (max-width: 767px) {
-  body {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  #wrap {
-    padding-left: 20px;
-    padding-right: 20px;
-  
-  }
-  footer {
-      padding-left: 20px;
-    padding-right: 20px;
-  
-  }
-  .astro-wrapper {
-	margin-bottom:20px;
-  }
- }
+@import url(css/bootstrap.min.css);
+@import url(css/font-awesome.css);
 
-	.menu .nav li{
-		border-bottom-style:solid;
-		border-bottom-width:3px;
-		border-bottom-color:transparent;
-	}
-	.navbar  {
-		z-index:999999; /*defeat the wordpress admin bar*/
-	}
-	footer {
-	margin-top:50px;
-	
-	background:url('img/wild_oliva.png') repeat 0 0;width:100%;
-	box-shadow: inset 0 20px 20px -20px #000000;
-	}
-	#footer-lists {
-	color:rgb(200,200,200); 
-	margin-top:20px;
-	}
-	.thumbnail {
-	padding:0px;
-	box-shadow: 0px 0px 15px rgba(0, 0, 0,.5);
-	}
-    .menu .nav li:hover {
-		border-bottom-style:solid;
-		border-bottom-width:3px;
-		border-bottom-color:steelblue;
-		
-	}
-	.caption-astro:hover {
-	text-decoration:none;
-	}
-	.menu .nav-pills li a:hover{
-		background-color:transparent;
-	}
-	.menu .nav {
-	margin-bottom:0px;
-	}
-	.navhr{
-	margin:0px;
-	margin-top:20px;
-	}
-	.navhrb {
-	margin:0px;
-	}
-	footer a {
-		color:rgb(230,230,230);
-	}
-	footer a:hover {
-		color:rgb(230,230,230);
-	}
-	ol,ul{
-	list-style:none;
-	}
-	.post:first-child {
-		border-top-style:solid;
-		border-top-color:rgb(220,220,220);
-		border-top-width:1px;
-		border-bottom-style:solid;
-		border-bottom-color:rgb(220,220,220);
-		border-bottom-width:1px;
-		padding:20px;
-		margin-top:20px;
-	}
-	.post:last-child {
-		margin-bottom:20px;
-	}
-	html, body {
-		height:100%;
-	}
-	.post {
-		
-		border-bottom-style:solid;
-		border-bottom-color:rgb(220,220,220);
-		border-bottom-width:1px;
-		padding:20px;
-	}
-	.contact-title {
-	font-size:11px;
-	color:rgb(153,153,153);
-	text-transform:uppercase;
-	}
-	.contact-hr {
-	margin:0px;
-	margin-bottom:3px;
-	border-bottom-style:none;
-	border-top-color:rgb(200,200,200);
-	}
+@media (max-width:767px) {
+body {
+padding-left:0;
+padding-right:0;
+}
 
-	 /*#wrap {
-        min-height: 100%;
-        height: auto !important;
-        height: 100%;
-        /* Negative indent footer by it's height 
-        margin: 0 auto -230px;
-      }*/
+#wrap,footer {
+padding-left:20px;
+padding-right:20px;
+}
+
+.astro-wrapper {
+margin-bottom:20px;
+}
+}
+
+body {
+font-smooth:always;
+-webkit-font-smoothing:antialiased;
+}
+
+.menu .nav li {
+border-bottom-style:solid;
+border-bottom-width:3px;
+border-bottom-color:transparent;
+}
+
+.navbar {
+z-index:999999;
+}
+
+footer {
+margin-top:50px;
+background:url(img/wild_oliva.png) repeat 0 0;
+width:100%;
+box-shadow:inset 0 20px 20px -20px #000;
+}
+
+#footer-lists {
+color:#c8c8c8;
+margin-top:20px;
+}
+
+.thumbnail {
+box-shadow:0 0 15px rgba(0,0,0,.5);
+padding:0;
+}
+
+.menu .nav li:hover {
+border-bottom-style:solid;
+border-bottom-width:3px;
+border-bottom-color:#4682B4;
+}
+
+.caption-astro:hover {
+text-decoration:none;
+}
+
+.menu .nav-pills li a:hover {
+background-color:transparent;
+}
+
+.menu .nav {
+margin-bottom:0;
+}
+
+.navhr {
+margin:20px 0 0;
+}
+
+.navhrb {
+margin:0;
+}
+
+footer a {
+color:#dcdcdc;
+}
+
+footer a:hover {
+color:#dcdcdc;
+}
+
+ol,ul {
+list-style:none;
+}
+
+.post:first-child {
+border-top-style:solid;
+border-top-color:#dcdcdc;
+border-top-width:1px;
+border-bottom-style:solid;
+border-bottom-color:#dcdcdc;
+border-bottom-width:1px;
+margin-top:20px;
+padding:20px;
+}
+
+.post:last-child {
+margin-bottom:20px;
+}
+
+html,body {
+height:100%;
+}
+
+.post {
+border-bottom-style:solid;
+border-bottom-color:#dcdcdc;
+border-bottom-width:1px;
+padding:20px;
+}
+
+.contact-title {
+font-size:11px;
+color:#999;
+text-transform:uppercase;
+}
+
+.contact-hr {
+border-bottom-style:none;
+border-top-color:#c8c8c8;
+margin:0 0 3px;
+}
+.astro {
+height:250px;
+background-position:center;
+}
+.astro div {
+padding:5px;
+background-color:black;
+color:whitesmoke;
+opacity:.8;
+}
+.astro div h4 {
+padding:0px;
+margin:0px;
+}
