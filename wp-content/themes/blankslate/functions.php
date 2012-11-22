@@ -200,7 +200,50 @@ function blankslate_commenter_link()
 }
 function my_nav_list($content)
 {
-  return str_replace('<ul>', '<ul class="nav nav-pills">', $content);
+ 	$defaults = array('sort_column' => 'menu_order, post_title', 'menu_class' => 'menu', 'echo' => false, 'link_before' => '', 'link_after' => '');
+	$args = $defaults;
+	$args = apply_filters( 'wp_page_menu_args', $args );
+
+	$menu = '';
+
+	$list_args = $args;
+	// Show Home in the menu
+	if ( ! empty($args['show_home']) ) {
+		if ( true === $args['show_home'] || '1' === $args['show_home'] || 1 === $args['show_home'] )
+			$text = __('Home');
+		else
+			$text = $args['show_home'];
+		$class = '';
+		if ( is_front_page() && !is_paged() )
+			$class = 'class="current_page_item"';
+		$menu .= '<li ' . $class . '><a href="' . home_url( '/' ) . '" title="' . esc_attr($text) . '">' . $args['link_before'] . $text . $args['link_after'] . '</a></li>';
+		// If the front page is a page, add it to the exclude list
+		if (get_option('show_on_front') == 'page') {
+			if ( !empty( $list_args['exclude'] ) ) {
+				$list_args['exclude'] .= ',';
+			} else {
+				$list_args['exclude'] = '';
+			}
+			$list_args['exclude'] .= get_option('page_on_front');
+		}
+	}
+
+	$list_args['echo'] = false;
+	$list_args['title_li'] = '';
+	$list_args['depth']=1;
+	$menu .= str_replace( array( "\r", "\n", "\t" ), '', wp_list_pages($list_args) );
+	if ( $menu )
+		$menu = '<ul class="nav nav-pills">' . $menu . '</ul>';
+
+	$menu = '<div class="' . esc_attr($args['menu_class']) . '">' . $menu . "</div>\n";
+	
+	if ( $args['echo'] )
+		echo $menu;
+	else
+		return $menu;
+
+
+  
 }
 add_filter('wp_page_menu', 'my_nav_list');
 function my_edit_link($content)

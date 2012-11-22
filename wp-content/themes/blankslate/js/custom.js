@@ -32,6 +32,7 @@ function() {  $("#tt").tooltip();
       }
     }
 if($('.astronomy').length > 0) {
+$('.astronomy').html(''); //freaking wordpress visual editor sometimes inserts a space between blank elements ;-: screws up layout
 var counter = 0;
 var isNarrow = $(window).width() < 979 && $(window).width() >= 768;
 var max = isNarrow? 2 : 3;

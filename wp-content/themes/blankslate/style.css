@@ -149,3 +149,18 @@ opacity:.8;
 padding:0px;
 margin:0px;
 }
+/*hide child pages from the nav!*/
+.menu ul li ul {
+visibility:hidden;
+height:0px;
+}
+.menu ul li a {
+margin-top:0px;
+}
+hr {
+border-bottom:1px solid #eeeeee;
+border-top:0 none #ffffff;
+}
+.current_page_item {
+background-color:rgb(240,240,240);
+}
