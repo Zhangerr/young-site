@@ -38,5 +38,6 @@
 			   </div>
 			<hr class="navhr" />
 			<?php wp_nav_menu( array( 'theme_location' => 'main-menu' ) ); ?>
-			<hr class="navhrb" />
+			<hr class="navhrb" style="border-top:1px solid #eeeeee;
+border-bottom:0 none #ffffff;" /> <!--for firefox-->
 

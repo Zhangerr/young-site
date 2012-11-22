@@ -9,9 +9,14 @@ String.prototype.format = function() {
 };
 $ = jQuery;
 ($(document).ready(
+function() {  
+$(".jscroll").on("click",function(e) {
+e.preventDefault();
+$(window).scrollTop($($(this).attr('href')).offset().top - 2 * $('.navbar').first().height()); //x2 because nav-bar shifts >_>
+});
 
-function() {  $("#tt").tooltip();
-		        var $win = $(window)
+$("#tt").tooltip();
+      var $win = $(window)
       , $nav = $('.navbar')
 	  , navHeight = $('.navbar').first().height()
       , navTop = $('.navbar').length && $('.navbar').offset().top - navHeight

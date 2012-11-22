@@ -132,7 +132,7 @@ text-transform:uppercase;
 
 .contact-hr {
 border-bottom-style:none;
-border-top-color:#c8c8c8;
+border-top:1px solid #c8c8c8;
 margin:0 0 3px;
 }
 .astro {
@@ -156,6 +156,7 @@ height:0px;
 }
 .menu ul li a {
 margin-top:0px;
+margin-bottom:0px;
 }
 hr {
 border-bottom:1px solid #eeeeee;

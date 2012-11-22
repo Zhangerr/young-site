@@ -3,8 +3,16 @@
 
 <article id="content">
 <?php the_post(); ?>
+
+
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-<h1 class="entry-title"><?php //the_title(); ?></h1>
+<h1 class="entry-title"><?php if(get_the_title() != "Home"){the_title();} ?></h1>
+<?php if($post->post_parent != 0) {
+$permalink = get_permalink($post->post_parent); 
+$title = get_the_title($post->post_parent);
+?>
+<a class="muted" href="<?php echo $permalink; ?>">&laquo; Back to <?php echo $title?> </a> <br /><br />
+<?php } ?>
 <div class="entry-content" >
 <?php 
 if ( has_post_thumbnail() ) {
