@@ -1,4 +1,6 @@
 <?php get_header(); ?>
+<div class="row-fluid" style="padding-top:20px;padding-bottom:20px;">
+<div class="span9">
 <div id="content">
 <?php the_post(); ?>
 <h1 class="page-title author"><?php printf( __( 'Author Archives: %s', 'blankslate' ), "<span class=\"vcard\"><a class='url fn n' href='$authordata->user_url' title='$authordata->display_name' rel='me'>$authordata->display_name</a></span>" ) ?></h1>
@@ -10,5 +12,8 @@
 <?php endwhile; ?>
 <?php get_template_part( 'nav', 'below' ); ?>
 </div>
+</div>
+<div class="span3">
 <?php get_sidebar(); ?>
+</div>
 <?php get_footer(); ?>

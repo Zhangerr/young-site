@@ -34,7 +34,7 @@
 				  Site redesign in progress...
 			   </div>
 			   <div class="progress progress-striped progress-danger active">
-				  <div class="bar" style="width: 30%;"></div>
+				  <div class="bar" style="width: 40%;"></div>
 			   </div>
 			<hr class="navhr" />
 			<?php wp_nav_menu( array( 'theme_location' => 'main-menu' ) ); ?>
