@@ -21,6 +21,7 @@ add_action('wp_enqueue_scripts', 'wpbootstrap_scripts_with_jquery');
 add_action('after_setup_theme', 'blankslate_setup');
 //load extra-editor-styles.css in tinymce
 add_editor_style('css/bootstrap.min.css');
+add_editor_style('css/font-awesome.css');
 add_filter('tiny_mce_before_init', 'myCustomTinyMCE');
 /* Custom CSS styles on TinyMCE Editor */
 if (!function_exists('myCustomTinyMCE'))
