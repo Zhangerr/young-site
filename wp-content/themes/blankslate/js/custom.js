@@ -46,7 +46,7 @@ var max = isNarrow? 2 : 3;
 $.getJSON('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://www.acme.com/jef/apod/rss.xml&num=6&callback=?', function(data) {
 for(var i = 0; i < 6; i++) { //in the future perhaps make background draggable because there's already that ease function
 
-var src = data.responseData.feed.entries[i].content.match(/img src=\"([a-zA-Z0-9\_\.\/\:]*)\"/)[1];
+var src = data.responseData.feed.entries[i].content.match(/img src=\"([a-zA-Z0-9\-\_\.\/\:]*)\"/)[1];
 if(src !== "") {
 	counter +=1;
 	$('.astronomy').append('<div class="' + (isNarrow? 'span6':'span4') + ' astro-wrapper"><div class="thumbnail astro" style="background-image:url(\'' +src + '\');"><div><h4><a class="caption-astro" href="' + data.responseData.feed.entries[i].link + '">' +  data.responseData.feed.entries[i].title + '</a></h4></div></div></div>');

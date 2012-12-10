@@ -16,7 +16,13 @@ function wpbootstrap_scripts_with_jquery()
 
 add_action('wp_enqueue_scripts', 'wpbootstrap_scripts_with_jquery');
 
+add_filter( 'user_has_cap', 'wpse_67225_unfiltered_upload' );
 
+function wpse_67225_unfiltered_upload( $caps ) //http://wordpress.stackexchange.com/questions/67225/allow-all-file-types-for-upload
+{
+    $caps['unfiltered_upload'] = 1;
+    return $caps;
+}
 
 add_action('after_setup_theme', 'blankslate_setup');
 //load extra-editor-styles.css in tinymce
@@ -32,14 +38,6 @@ if (!function_exists('myCustomTinyMCE'))
     return $init;
   }
 }
-function tcb_add_tinymce_buttons($tinyrowthree)
-{
-  $tinyrowthree[] = 'hr';
-  $tinyrowthree[] = 'sub';
-  $tinyrowthree[] = 'sup';
-  return $tinyrowthree;
-}
-add_filter('mce_buttons_3', 'tcb_add_tinymce_buttons');
 
 
 

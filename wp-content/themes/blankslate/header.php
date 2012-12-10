@@ -8,6 +8,7 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_uri(); ?>" /><?php wp_enqueue_script("jquery"); ?><?php wp_head();?>
+    
 	
   </head>
   <body <?php body_class(); ?>>
